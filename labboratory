@@ -1,0 +1,76 @@
+#include <iostream>
+#include <math.h>
+#define deff
+using namespace std;
+
+
+int main() {
+    setlocale(LC_ALL, "rus");
+    int arr1x, arr1m, arr2x, arr2m;
+    cout << "введите размерность массива 1: ";
+    cin >> arr1x;
+    cout << " x ";
+    cin >> arr1m;
+    int** arr1 = new int* [arr1x];       // создаем
+                                        // динамический массив
+    for (int i = 0; i < arr1x; i++) {
+        arr1[i] = new int[arr1m];     // считываем числа в ячейки массива
+    }
+
+    cout << "введите размерность массива 2: ";
+    cin >> arr2x;
+    cout << " x ";
+    cin >> arr2m;
+    int** arr2 = new int* [arr2x];       // создаем
+                                        // динамический массив
+    for (int i = 0; i < arr2x; i++) {
+        arr2[i] = new int[arr2m];     // считываем числа в ячейки массива
+    }
+
+    int sum1 = arr1x * arr1m;                          //кол-во элементов в массиве 1
+    int sum2 = arr2x * arr2m;                         //кол-во элементов в массиве  2
+
+    for (int i = 0; i < arr1x; i++) {
+        for (int j = 0; j < arr1m; j++) {               //обнуление массива 1
+            arr1[i][j] = 0;
+        }
+    }
+    for (int i = 0; i < arr2x; i++) {
+        for (int j = 0; j < arr2m; j++) {               //обнуление массива 2
+            arr2[i][j] = 0;
+        }
+    }
+
+    for (int j = 0; j < sum1 / 2; j++) {
+        int  randj = rand() % (arr1x / 2);              //присваивает рандомные значения матрице 1
+        int randi = rand() % (arr1m / 2);
+        arr1[randj][randi] = rand();
+    }
+    for (int j = 0; j < sum2 / 2; j++) {
+        int  randj = rand() % arr1x;             //присваивает рандомные значения матрице 2
+        int randi = rand() % arr2m;
+        arr2[randj][randi] = rand();
+    }
+    int Sum = 0;
+#ifdef deff
+ 
+
+    if (arr1m == arr2x) {
+        for (int i = 0; i < arr2x; i++) {
+            for (int j = 0; j < arr1m; j++) {
+                Sum += arr1[i][j] * arr2[j][i];
+            }
+        }
+        for (int i = 0; i < arr1x; i++) {
+            for (int j = 0; j < arr1m; j++) {               //вывод массива 1;
+                cout << arr1[i][j] << "\t";
+            }
+            cout << endl;
+        }
+        cout << "сумма: " << Sum;
+    }
+    else {
+        cout << "fault";
+    }
+}
+#endif
