@@ -72,5 +72,5 @@ int main() {
     else {
         cout << "fault";
     }
+    #endif
 }
-#endif
